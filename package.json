@@ -1,0 +1,22 @@
+{
+  "name": "electron-vite-solid-ts",
+  "version": "1.0.0",
+  "description": "Boilerplate for a Electron + Vite + SolidJS project.",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && electron-builder"
+  },
+  "keywords": [],
+  "author": "Niels Poldervaart",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^26.2.4",
+    "electron-builder": "^24.6.4",
+    "solid-js": "^1.7.12",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-electron": "^0.14.1",
+    "vite-plugin-solid": "^2.7.0"
+  }
+}
