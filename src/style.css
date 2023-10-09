@@ -1,0 +1,124 @@
+:root {
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #1E1E1E;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 32px 1fr;
+}
+
+a {
+    font-weight: 500;
+    color: rgb(172, 100, 255);
+
+    &:hover {
+        color: rgb(172, 100, 255);
+    }
+}
+
+button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  
+    &:hover {
+      border-color: rgb(172, 100, 255);
+    }
+}
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+#titlebar {
+    grid-row: 1;
+    display: flex;
+    position: relative;
+    height: 32px;
+    width: 100%;
+    background: #181818;
+    user-select: none;
+}
+
+#titlebar-drag {
+    width: 100%;
+    height: 100%;
+    -webkit-app-region: drag;
+}
+
+#titleLogo {
+    fill: #e1e1e1;
+    padding-left: 5px;
+}
+
+#titleBtns {
+    display: flex;
+    height: 100%;
+}
+
+.titleBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 100%;
+    cursor: pointer;
+    fill: #e1e1e1;
+
+    &#minimizeBtn:hover, &#maximizeBtn:hover {
+        background: rgba(255,255,255,0.1);
+
+        &:active {
+            background: rgba(255,255,255,0.2);
+        }
+    }
+
+    &#closeBtn:hover {
+        background: #E81123 !important;
+
+        &:active {
+            background: #f05151 !important;
+        }
+    }
+}
+
+.main-content {
+    height: 100%;
+    padding: 2rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    padding: 2em;
+}
+
+.hello {
+    padding: 2em;
+}
