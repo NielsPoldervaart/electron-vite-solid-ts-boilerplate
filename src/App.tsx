@@ -14,6 +14,7 @@ export const App = () => {
     setIsMaximized(maximized);
   };
 
+  // When window is maximized / unmaximized call callback function.
   window.api.onWindowMaximizedChange(handleWindowMaximizedChange);
 
   return (
