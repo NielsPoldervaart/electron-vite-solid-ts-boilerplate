@@ -11,9 +11,8 @@ const url = process.env.VITE_DEV_SERVER_URL
 autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = true;
 
-let window: BrowserWindow;
 const createWindow = () => {
-	window = new BrowserWindow({
+	const window = new BrowserWindow({
 		width: 1080,
 		minWidth: 1080,
 		height: 720,
@@ -56,35 +55,35 @@ const createWindow = () => {
 	ipcMain.on("close-window", () => {
 		window.close();
 	});
+	
 
-	return window;
+	autoUpdater.on("checking-for-update", () => {
+		window.webContents.send("updateMessage", "Checking for update...");
+	});
+	
+	autoUpdater.on("update-available", (info) => {
+		window.webContents.send("updateMessage", "Update available.");
+		autoUpdater.downloadUpdate();
+	});
+	
+	autoUpdater.on("update-not-available", (info) => {
+		window.webContents.send("updateMessage", "Update not available.");
+	});
+	
+	autoUpdater.on("error", (err) => {
+		window.webContents.send("updateMessage", "Error in auto-updater. " + err);
+	});
+	
+	autoUpdater.on("download-progress", (progress) => {
+		const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
+		window.webContents.send("updateMessage", `Downloading update: ${progress.transferred}/${progress.total} (${progress.percent}%) - [${megaBytesPerSecond.toFixed(2)} MB/s]`);
+	});
+	
+	autoUpdater.on("update-downloaded", (info) => {
+		window.webContents.send("updateMessage", "Update downloaded");
+	});
 }
 
-autoUpdater.on("checking-for-update", () => {
-	window.webContents.send("updateMessage", "Checking for update...");
-});
-
-autoUpdater.on("update-available", (info) => {
-	window.webContents.send("updateMessage", "Update available.");
-	// autoUpdater.downloadUpdate();
-});
-
-// autoUpdater.on("update-not-available", (info) => {
-// 	window.webContents.send("updateMessage", "Update not available.");
-// });
-
-// autoUpdater.on("error", (err) => {
-// 	window.webContents.send("updateMessage", "Error in auto-updater. " + err);
-// });
-
-// autoUpdater.on("download-progress", (progress) => {
-// 	const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
-// 	window.webContents.send("updateMessage", `Downloading update: ${progress.transferred}/${progress.total} (${progress.percent}%) - [${megaBytesPerSecond.toFixed(2)} MB/s]`);
-// });
-
-// autoUpdater.on("update-downloaded", (info) => {
-// 	window.webContents.send("updateMessage", "Update downloaded");
-// });
 
 app.whenReady().then(() => {
 	createWindow();

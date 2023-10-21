@@ -13,6 +13,13 @@ export const App = () => {
   // When window is maximized / unmaximized call callback function.
   window.api.onWindowMaximizedChange(handleWindowMaximizedChange);
 
+  const testFunc = (message: string) => {
+    console.log(message)
+  }
+
+  // logs a message based on if the app is up to date or not.
+  window.api.updateMessage(testFunc);
+
   return (
     <>
       <Titlebar isMaximized={isMaximized()}/>
