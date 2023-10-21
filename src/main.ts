@@ -63,7 +63,7 @@ const createWindow = () => {
 	
 	autoUpdater.on("update-available", (info) => {
 		window.webContents.send("updateMessage", "Update available.");
-		autoUpdater.downloadUpdate();
+		// autoUpdater.downloadUpdate();
 	});
 	
 	autoUpdater.on("update-not-available", (info) => {
