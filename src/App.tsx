@@ -25,6 +25,7 @@ export const App = () => {
       <Titlebar isMaximized={isMaximized()}/>
       <div class="main-content">
         <h1>SolidJS + Vite + TypeScript</h1>
+        <p>Current version: {APP_VERSION}</p>
         <div class="card">
           <Counter />
         </div>
