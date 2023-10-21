@@ -63,26 +63,26 @@ autoUpdater.on("checking-for-update", () => {
 });
 
 autoUpdater.on("update-available", (info) => {
-	window.webContents.send("Update available.");
-	autoUpdater.downloadUpdate();
+	window.webContents.send("updateMessage", "Update available.");
+	// autoUpdater.downloadUpdate();
 });
 
-autoUpdater.on("update-not-available", (info) => {
-	window.webContents.send("Update not available.");
-});
+// autoUpdater.on("update-not-available", (info) => {
+// 	window.webContents.send("updateMessage", "Update not available.");
+// });
 
-autoUpdater.on("error", (err) => {
-	window.webContents.send("Error in auto-updater. " + err);
-});
+// autoUpdater.on("error", (err) => {
+// 	window.webContents.send("updateMessage", "Error in auto-updater. " + err);
+// });
 
-autoUpdater.on("download-progress", (progress) => {
-	const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
-	window.webContents.send(`Downloading update: ${progress.transferred}/${progress.total} (${progress.percent}%) - [${megaBytesPerSecond.toFixed(2)} MB/s]`);
-});
+// autoUpdater.on("download-progress", (progress) => {
+// 	const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
+// 	window.webContents.send("updateMessage", `Downloading update: ${progress.transferred}/${progress.total} (${progress.percent}%) - [${megaBytesPerSecond.toFixed(2)} MB/s]`);
+// });
 
-autoUpdater.on("update-downloaded", (info) => {
-	window.webContents.send("Update downloaded");
-});
+// autoUpdater.on("update-downloaded", (info) => {
+// 	window.webContents.send("updateMessage", "Update downloaded");
+// });
 
 app.whenReady().then(() => {
 	createWindow();

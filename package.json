@@ -1,16 +1,45 @@
 {
   "name": "electron-vite-solid-ts",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Boilerplate for a Electron + Vite + SolidJS project.",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && electron-builder"
+    "build": "tsc && vite build && electron-builder --win --publish never",
+    "publish": "tsc && vite build && electron-builder --win --publish always"
   },
   "keywords": [],
   "author": "Niels Poldervaart",
   "license": "ISC",
-  "repository": "https://github.com/NielsPoldervaart/electron-vite-solid-ts-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NielsPoldervaart/electron-vite-solid-ts-boilerplate"
+  },
+  "build": {
+    "appId": "appId",
+    "asar": true,
+    "directories": {
+      "output": "build"
+    },
+    "files": ["dist", "dist-electron"],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "publish": ["github"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": false
+    }
+  },
   "publish": {
     "provider": "github",
     "releaseType": "release"
