@@ -1,4 +1,4 @@
-import { SVGProps } from '../components/Icons';
+import { SVGProps } from "../components/Icons";
 
 const Close = (props: SVGProps) => {
     return (

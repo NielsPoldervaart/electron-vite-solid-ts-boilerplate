@@ -1,6 +1,6 @@
 import { Show } from "solid-js";
 
-import { LogoIcon, MinimizeIcon, MaximizeIcon, RestoreIcon, CloseIcon } from './Icons';
+import { LogoIcon, MinimizeIcon, MaximizeIcon, RestoreIcon, CloseIcon } from "./Icons";
 
 interface Props {
     isMaximized: boolean,

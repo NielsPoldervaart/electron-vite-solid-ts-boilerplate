@@ -1,4 +1,4 @@
-import { SVGProps } from '../components/Icons';
+import { SVGProps } from "../components/Icons";
 
 const Minimize = (props: SVGProps) => {
     return (

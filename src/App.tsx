@@ -1,6 +1,6 @@
 import { createSignal } from "solid-js"
 
-import { Counter } from './components/Counter';
+import { Counter } from "./components/Counter";
 import Titlebar from "./components/Titlebar";
 
 export const App = () => {
@@ -12,6 +12,11 @@ export const App = () => {
 
   // When window is maximized / unmaximized call callback function.
   window.api.onWindowMaximizedChange(handleWindowMaximizedChange);
+
+  // logs a message based on if the app is up to date or not.
+  window.api.updateMessage((message: string) => {
+    console.log(message)
+  })
 
   return (
     <>

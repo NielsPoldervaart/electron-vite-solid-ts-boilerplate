@@ -10,6 +10,11 @@
   "keywords": [],
   "author": "Niels Poldervaart",
   "license": "ISC",
+  "repository": "https://github.com/NielsPoldervaart/electron-vite-solid-ts-boilerplate",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
   "devDependencies": {
     "electron": "^26.2.4",
     "electron-builder": "^24.6.4",
@@ -18,5 +23,8 @@
     "vite": "^4.4.9",
     "vite-plugin-electron": "^0.14.1",
     "vite-plugin-solid": "^2.7.0"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.4"
   }
 }
