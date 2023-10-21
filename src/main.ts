@@ -56,6 +56,8 @@ const createWindow = () => {
 	ipcMain.on("close-window", () => {
 		window.close();
 	});
+
+	return window;
 }
 
 autoUpdater.on("checking-for-update", () => {
