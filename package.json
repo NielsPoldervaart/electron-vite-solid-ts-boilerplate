@@ -1,58 +1,64 @@
 {
-  "name": "electron-vite-solid-ts",
-  "version": "0.0.9",
-  "description": "Boilerplate for a Electron + Vite + SolidJS project.",
-  "main": "dist-electron/main.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build && electron-builder -p never",
-    "build:release": "tsc && vite build && electron-builder -p always"
-  },
-  "keywords": [],
-  "author": "Niels Poldervaart",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/NielsPoldervaart/electron-vite-solid-ts-boilerplate"
-  },
-  "build": {
-    "appId": "appId",
-    "asar": true,
-    "directories": {
-      "output": "build"
-    },
-    "files": ["dist", "dist-electron"],
-    "win": {
-      "target": [
-        {
-          "target": "nsis",
-          "arch": ["x64"]
-        }
-      ]
-    },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": false,
-      "allowToChangeInstallationDirectory": true,
-      "deleteAppDataOnUninstall": true,
-      "createDesktopShortcut": false,
-      "createStartMenuShortcut": false
-    },
-    "publish": {
-      "provider": "github",
-      "releaseType": "release"
-    }
-  },
-  "devDependencies": {
-    "electron": "^26.2.4",
-    "electron-builder": "^24.6.4",
-    "solid-js": "^1.7.12",
-    "typescript": "^5.2.2",
-    "vite": "^4.4.9",
-    "vite-plugin-electron": "^0.14.1",
-    "vite-plugin-solid": "^2.7.0"
-  },
-  "dependencies": {
-    "electron-updater": "^6.1.4"
-  }
+	"name": "electron-vite-solid-ts",
+	"version": "0.1.0",
+	"description": "Boilerplate for a Electron + Vite + SolidJS project.",
+	"main": "dist-electron/main.js",
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc && vite build && electron-builder -p never",
+		"build:release": "tsc && vite build && electron-builder -p always"
+	},
+	"keywords": [],
+	"author": "Niels Poldervaart",
+	"license": "ISC",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/NielsPoldervaart/electron-vite-solid-ts-boilerplate"
+	},
+	"build": {
+		"appId": "appId",
+		"asar": true,
+		"directories": {
+			"output": "build"
+		},
+		"files": [
+			"dist",
+			"dist-electron"
+		],
+		"win": {
+			"target": [
+				{
+					"target": "nsis",
+					"arch": [
+						"x64"
+					]
+				}
+			]
+		},
+		"nsis": {
+			"oneClick": false,
+			"perMachine": false,
+			"allowToChangeInstallationDirectory": true,
+			"deleteAppDataOnUninstall": true,
+			"createDesktopShortcut": false,
+			"createStartMenuShortcut": false
+		},
+		"publish": {
+			"provider": "github",
+			"releaseType": "release"
+		}
+	},
+	"devDependencies": {
+		"electron": "^26.2.4",
+		"electron-builder": "^24.6.4",
+		"solid-js": "^1.7.12",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.9",
+		"vite-plugin-electron": "^0.14.1",
+		"vite-plugin-solid": "^2.7.0"
+	},
+	"dependencies": {
+		"electron-updater": "^6.1.4",
+		"solid-icons": "^1.0.12"
+	}
 }
