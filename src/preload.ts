@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	const downloadUpdate = document.getElementById("downloadAppUpdate");
 	downloadUpdate?.addEventListener("click", () => {
+		console.log("download update clicked");
 		ipcRenderer.send("download-update");
 	});
 });

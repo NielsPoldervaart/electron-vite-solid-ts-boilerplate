@@ -1,6 +1,6 @@
 {
 	"name": "electron-vite-solid-ts",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"description": "Boilerplate for a Electron + Vite + SolidJS project.",
 	"main": "dist-electron/main.js",
 	"scripts": {
