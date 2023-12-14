@@ -35,19 +35,18 @@ ipcRenderer.on("isRestored", () => {
 });
 
 contextBridge.exposeInMainWorld("api", {
-	// Adds onWindowMaximizedChange function to API
-	// The function has a callback function as param.
-	// callback function has boolean as param.
-	// When message recieved from ipcMain on channel "window-maximized" call callback function with boolean value from message.
 	onWindowMaximizedChange: (callback: (isMaximized: boolean) => void) => {
 		ipcRenderer.on("window-maximized", (_, isMaximized: boolean) => {
 			callback(isMaximized);
 		});
 	},
 	onUpdateAvailable: (callback: (available: boolean) => void) => {
-		ipcRenderer.on("update-available", (_, available: boolean) => {
-			callback(available);
-		});
+		ipcRenderer.on(
+			"update-available",
+			(_, available: boolean, version: String) => {
+				callback(available);
+			}
+		);
 	},
 	onUpdateError: (callback: (message: string) => void) => {
 		ipcRenderer.on("update-error", (_, message: string) => {
@@ -57,6 +56,9 @@ contextBridge.exposeInMainWorld("api", {
 	startDownloadUpdate: () => {
 		ipcRenderer.send("download-update");
 	},
+
+	// Calculates the MB/s download speed.
+	// const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
 	onUpdateDownloadProgress: (callback: (progress: ProgressInfo) => void) => {
 		ipcRenderer.on(
 			"update-download-progress",
