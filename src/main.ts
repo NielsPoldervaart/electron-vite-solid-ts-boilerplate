@@ -84,6 +84,7 @@ const createWindow = () => {
 
 	autoUpdater.on("update-downloaded", () => {
 		window.webContents.send("update-downloaded", true);
+		autoUpdater.quitAndInstall();
 	});
 };
 
