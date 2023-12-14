@@ -4,12 +4,16 @@ import { Portal } from "solid-js/web";
 import { HiOutlineBell, HiSolidBellAlert } from "solid-icons/hi";
 import { VsChevronDown } from "solid-icons/vs";
 
+import UpdateCard from "./UpdateCard";
+
 interface Props {
 	updateAvailable: boolean;
+	updateVersion: string;
 }
 
 const Footer = (props: Props) => {
 	const [displayNotifications, setDisplayNotifications] = createSignal(false);
+	const [wantsUpdate, setWantsUpdate] = createSignal(true);
 
 	return (
 		<>
@@ -31,13 +35,11 @@ const Footer = (props: Props) => {
 				<Portal>
 					<div id="notiBox">
 						<div id="notiBoxContent">
-							<Show when={props.updateAvailable}>
-								<button
-									onClick={() => {
-										window.api.startDownloadUpdate();
-									}}>
-									Download Update
-								</button>
+							<Show when={props.updateAvailable && wantsUpdate()}>
+								<UpdateCard
+									updateVersion={props.updateVersion}
+									setWantsUpdate={setWantsUpdate}
+								/>
 							</Show>
 						</div>
 						<div id="notiBoxIcons">
