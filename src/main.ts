@@ -34,7 +34,6 @@ const createWindow = () => {
 	}
 
 	ipcMain.on("minimize-window", () => {
-		console.log("minimized");
 		window.minimize();
 	});
 
@@ -60,7 +59,6 @@ const createWindow = () => {
 
 	autoUpdater.on("update-available", () => {
 		window.webContents.send("update-available", true);
-		// autoUpdater.downloadUpdate();
 	});
 
 	autoUpdater.on("update-not-available", () => {
@@ -75,33 +73,16 @@ const createWindow = () => {
 	});
 
 	ipcMain.on("download-update", () => {
-		console.log("download started");
 		autoUpdater.downloadUpdate();
 	});
 
-	autoUpdater.on("download-progress", (progressObj) => {
-		let log_message = "Download speed: " + progressObj.bytesPerSecond;
-		log_message =
-			log_message + " - Downloaded " + progressObj.percent + "%";
-		log_message =
-			log_message +
-			" (" +
-			progressObj.transferred +
-			"/" +
-			progressObj.total +
-			")";
-		console.log(log_message);
+	autoUpdater.on("download-progress", (progress) => {
+		window.webContents.send("update-download-progress", progress);
 	});
-
-	// autoUpdater.on("download-progress", (progress) => {
-	// 	// const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
-	// 	window.webContents.send("update-download-progress", progress);
-	// });
 
 	autoUpdater.on("update-downloaded", () => {
 		window.webContents.send("update-downloaded", true);
-		console.log("quit and install");
-		autoUpdater.quitAndInstall();
+		autoUpdater.quitAndInstall(true, true);
 	});
 };
 
