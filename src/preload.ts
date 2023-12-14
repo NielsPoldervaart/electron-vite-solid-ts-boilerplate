@@ -54,6 +54,9 @@ contextBridge.exposeInMainWorld("api", {
 			callback(message);
 		});
 	},
+	startDownloadUpdate: () => {
+		ipcRenderer.send("download-update");
+	},
 	onUpdateDownloadProgress: (callback: (progress: ProgressInfo) => void) => {
 		ipcRenderer.on(
 			"update-download-progress",

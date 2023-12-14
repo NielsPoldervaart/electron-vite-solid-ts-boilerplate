@@ -32,7 +32,10 @@ const Footer = (props: Props) => {
 					<div id="notiBox">
 						<div id="notiBoxContent">
 							<Show when={props.updateAvailable}>
-								<button id="downloadAppUpdate">
+								<button
+									onClick={() => {
+										window.api.startDownloadUpdate();
+									}}>
 									Download Update
 								</button>
 							</Show>

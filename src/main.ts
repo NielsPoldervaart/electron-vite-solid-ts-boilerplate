@@ -34,6 +34,7 @@ const createWindow = () => {
 	}
 
 	ipcMain.on("minimize-window", () => {
+		console.log("minimized");
 		window.minimize();
 	});
 
@@ -74,8 +75,8 @@ const createWindow = () => {
 	});
 
 	ipcMain.on("download-update", () => {
-		autoUpdater.downloadUpdate();
 		console.log("download started");
+		autoUpdater.downloadUpdate();
 	});
 
 	autoUpdater.on("download-progress", (progressObj) => {
