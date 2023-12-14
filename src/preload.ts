@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	const downloadUpdate = document.getElementById("downloadAppUpdate");
-	closeBtn?.addEventListener("click", () => {
+	downloadUpdate?.addEventListener("click", () => {
 		ipcRenderer.send("download-update");
 	});
 });
