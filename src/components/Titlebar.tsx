@@ -15,7 +15,7 @@ interface Props {
 const Titlebar = (props: Props) => {
 	return (
 		<header id="titlebar">
-			<div id="titlebar-drag">
+			<div id="titlebarDrag">
 				<div id="titleLogo">
 					<VsCode size={32} />
 				</div>
