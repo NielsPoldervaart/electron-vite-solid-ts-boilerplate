@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import { join } from "path";
-import { autoUpdater, AppUpdater } from "electron-updater";
+import { autoUpdater } from "electron-updater";
 
 process.env.DIST = join(__dirname, "../dist");
 process.env.PUBLIC = app.isPackaged
@@ -11,7 +11,7 @@ const preload = join(__dirname, "./preload.js");
 const url = process.env.VITE_DEV_SERVER_URL;
 
 autoUpdater.autoDownload = false;
-autoUpdater.autoInstallOnAppQuit = true;
+autoUpdater.autoInstallOnAppQuit = false;
 
 const createWindow = () => {
 	const window = new BrowserWindow({
@@ -57,38 +57,33 @@ const createWindow = () => {
 		window.close();
 	});
 
-	autoUpdater.on("checking-for-update", () => {
-		window.webContents.send("updateMessage", "Checking for update...");
+	autoUpdater.on("update-available", () => {
+		window.webContents.send("update-available", true);
+		// autoUpdater.downloadUpdate();
 	});
 
-	autoUpdater.on("update-available", (info) => {
-		window.webContents.send("updateMessage", "Update available.");
-		autoUpdater.downloadUpdate();
-	});
-
-	autoUpdater.on("update-not-available", (info) => {
-		window.webContents.send("updateMessage", "Update not available.");
+	autoUpdater.on("update-not-available", () => {
+		window.webContents.send("update-available", false);
 	});
 
 	autoUpdater.on("error", (err) => {
 		window.webContents.send(
-			"updateMessage",
-			"Error in auto-updater. " + err
+			"update-error",
+			`Error in auto-updater. ${err}`
 		);
 	});
 
-	autoUpdater.on("download-progress", (progress) => {
-		const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
-		window.webContents.send(
-			"updateMessage",
-			`Downloading update: ${progress.transferred}/${progress.total} (${
-				progress.percent
-			}%) - [${megaBytesPerSecond.toFixed(2)} MB/s]`
-		);
+	ipcMain.on("download-update", () => {
+		autoUpdater.downloadUpdate();
 	});
 
-	autoUpdater.on("update-downloaded", (info) => {
-		window.webContents.send("updateMessage", "Update downloaded");
+	// autoUpdater.on("download-progress", (progress) => {
+	// 	// const megaBytesPerSecond = progress.bytesPerSecond / 1048567;
+	// 	window.webContents.send("update-download-progress", progress);
+	// });
+
+	autoUpdater.on("update-downloaded", () => {
+		window.webContents.send("update-downloaded", true);
 	});
 };
 

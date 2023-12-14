@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from "electron";
+import { ProgressInfo } from "electron-updater";
 
 let isMaximized = false;
 
@@ -17,6 +18,11 @@ window.addEventListener("DOMContentLoaded", () => {
 	closeBtn?.addEventListener("click", () => {
 		ipcRenderer.send("close-window");
 	});
+
+	const downloadUpdate = document.getElementById("downloadAppUpdate");
+	closeBtn?.addEventListener("click", () => {
+		ipcRenderer.send("download-update");
+	});
 });
 
 ipcRenderer.on("isMaximized", () => {
@@ -33,13 +39,31 @@ contextBridge.exposeInMainWorld("api", {
 	// callback function has boolean as param.
 	// When message recieved from ipcMain on channel "window-maximized" call callback function with boolean value from message.
 	onWindowMaximizedChange: (callback: (isMaximized: boolean) => void) => {
-		ipcRenderer.on("window-maximized", (_, isMaximized) => {
+		ipcRenderer.on("window-maximized", (_, isMaximized: boolean) => {
 			callback(isMaximized);
 		});
 	},
-	updateMessage: (callback: (message: string) => void) => {
-		ipcRenderer.on("updateMessage", (_, message) => {
+	onUpdateAvailable: (callback: (available: boolean) => void) => {
+		ipcRenderer.on("update-available", (_, available: boolean) => {
+			callback(available);
+		});
+	},
+	onUpdateError: (callback: (message: string) => void) => {
+		ipcRenderer.on("update-error", (_, message: string) => {
 			callback(message);
+		});
+	},
+	onUpdateDownloadProgress: (callback: (progress: ProgressInfo) => void) => {
+		ipcRenderer.on(
+			"update-download-progress",
+			(_, progress: ProgressInfo) => {
+				callback(progress);
+			}
+		);
+	},
+	onUpdatedownloaded: (callback: (downloaded: boolean) => void) => {
+		ipcRenderer.on("update-downloaded", (_, downloaded: boolean) => {
+			callback(downloaded);
 		});
 	},
 });
