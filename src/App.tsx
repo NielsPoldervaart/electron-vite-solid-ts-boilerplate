@@ -6,23 +6,13 @@ import Footer from "./components/Footer";
 
 export const App = () => {
 	const [isMaximized, setIsMaximized] = createSignal(false);
-	const [updateAvailable, setUpdateAvailable] = createSignal(false);
-	const [updateVersion, setUpdateVersion] = createSignal(`v${APP_VERSION}`);
 
 	const handleWindowMaximizedChange = (maximized: boolean) => {
 		setIsMaximized(maximized);
 	};
 
-	const handleUpdateAvailable = (available: boolean, version: string) => {
-		setUpdateAvailable(available);
-		setUpdateVersion(version);
-	};
-
 	// When window is maximized / unmaximized call callback function.
 	window.api.onWindowMaximizedChange(handleWindowMaximizedChange);
-
-	// When window is maximized / unmaximized call callback function.
-	window.api.onUpdateAvailable(handleUpdateAvailable);
 
 	return (
 		<>
@@ -33,10 +23,7 @@ export const App = () => {
 					<Counter />
 				</div>
 			</div>
-			<Footer
-				updateAvailable={updateAvailable()}
-				updateVersion={updateVersion()}
-			/>
+			<Footer />
 		</>
 	);
 };
