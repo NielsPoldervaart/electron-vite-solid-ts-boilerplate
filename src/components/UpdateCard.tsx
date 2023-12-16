@@ -1,30 +1,40 @@
-import { Setter } from "solid-js";
+import { ProgressInfo } from "electron-updater";
+import { Setter, createSignal } from "solid-js";
 
 interface Props {
 	updateVersion: string;
 	setWantsUpdate: Setter<boolean>;
+	downloadProgress: ProgressInfo;
+	setDisplayNotifications: Setter<boolean>;
 }
 
 const UpdateCard = (props: Props) => {
+	const [showButtons, setShowButtons] = createSignal(true);
+	const [showProgressBar, setShowProgressBar] = createSignal(false);
+	const [showRestartButtons, setShowRestartButtons] = createSignal(false);
+
 	return (
 		<div class="updateCard">
 			<div class="updateCardText">
-				<p>A new version is available: v{props.updateVersion}!</p>
-				<p>Would you like to update now?</p>
+				<p>New update available!</p>
+				<p>Version: v{props.updateVersion}</p>
+				<p>Would you like to download it?</p>
 			</div>
 			<div class="updateCardBtns">
 				<button
+					class="updateBtn"
 					onClick={() => {
 						window.api.startDownloadUpdate();
 					}}>
-					Update now
+					Download
 				</button>
-
 				<button
+					class="updateBtn"
 					onClick={() => {
 						props.setWantsUpdate(false);
+						props.setDisplayNotifications(false);
 					}}>
-					Remind me later
+					Not now
 				</button>
 			</div>
 		</div>

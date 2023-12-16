@@ -1,19 +1,38 @@
 import { Show, createSignal } from "solid-js";
-import { Portal } from "solid-js/web";
+import { ProgressInfo } from "electron-updater";
 
 import { HiOutlineBell, HiSolidBellAlert } from "solid-icons/hi";
-import { VsChevronDown } from "solid-icons/vs";
 
-import UpdateCard from "./UpdateCard";
+import NotificationBox from "./NotificationBox";
 
-interface Props {
-	updateAvailable: boolean;
-	updateVersion: string;
-}
-
-const Footer = (props: Props) => {
+const Footer = () => {
 	const [displayNotifications, setDisplayNotifications] = createSignal(false);
 	const [wantsUpdate, setWantsUpdate] = createSignal(true);
+	const [updateAvailable, setUpdateAvailable] = createSignal(true);
+	const [updateVersion, setUpdateVersion] = createSignal(`${APP_VERSION}`);
+	const [downloadProgress, setDownloadProgress] = createSignal({
+		total: 0,
+		delta: 0,
+		transferred: 0,
+		percent: 0,
+		bytesPerSecond: 0,
+	});
+
+	const handleUpdateAvailable = (available: boolean, version: string) => {
+		setUpdateAvailable(available);
+		setUpdateVersion(version);
+	};
+
+	const handleDownloadUpdateProgress = (progress: ProgressInfo) => {
+		setDownloadProgress(progress);
+	};
+
+	window.api.onUpdateAvailable(handleUpdateAvailable);
+	window.api.onUpdateDownloadProgress(handleDownloadUpdateProgress);
+
+	// TODO: Clean up props for notifications
+	// TODO: Add "read" functionality to notifications
+	// TODO: Make modular notification card.
 
 	return (
 		<>
@@ -25,36 +44,21 @@ const Footer = (props: Props) => {
 						setDisplayNotifications(!displayNotifications())
 					}>
 					<Show
-						when={!props.updateAvailable}
-						fallback={<HiSolidBellAlert size={20} />}>
-						<HiOutlineBell size={20} />
+						when={updateAvailable() && wantsUpdate()}
+						fallback={<HiOutlineBell size={20} />}>
+						<HiSolidBellAlert size={20} />
 					</Show>
 				</div>
 			</footer>
 			<Show when={displayNotifications()}>
-				<Portal>
-					<div id="notiBox">
-						<div id="notiBoxContent">
-							<Show when={props.updateAvailable && wantsUpdate()}>
-								<UpdateCard
-									updateVersion={props.updateVersion}
-									setWantsUpdate={setWantsUpdate}
-								/>
-							</Show>
-						</div>
-						<div id="notiBoxIcons">
-							<div
-								class="closeIcon"
-								onClick={() =>
-									setDisplayNotifications(
-										!displayNotifications()
-									)
-								}>
-								<VsChevronDown size={20} />
-							</div>
-						</div>
-					</div>
-				</Portal>
+				<NotificationBox
+					updateVersion={updateVersion()}
+					setWantsUpdate={setWantsUpdate}
+					downloadProgress={downloadProgress()}
+					setDisplayNotifications={setDisplayNotifications}
+					displayNotifications={displayNotifications()}
+					updateAvailable={updateAvailable()}
+				/>
 			</Show>
 		</>
 	);

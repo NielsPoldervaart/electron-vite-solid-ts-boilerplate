@@ -12,6 +12,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	user-select: none;
 }
 
 body {
@@ -32,7 +33,12 @@ a {
 	}
 }
 
-button {
+h1 {
+	font-size: 3.2em;
+	line-height: 1.1;
+}
+
+.standardBtn {
 	border-radius: 8px;
 	border: 1px solid transparent;
 	padding: 0.6em 1.2em;
@@ -48,11 +54,6 @@ button {
 	}
 }
 
-h1 {
-	font-size: 3.2em;
-	line-height: 1.1;
-}
-
 #titlebar {
 	grid-row: 1;
 	display: flex;
@@ -60,7 +61,6 @@ h1 {
 	height: 32px;
 	width: 100%;
 	background: #181818;
-	user-select: none;
 }
 
 #titlebarDrag {
@@ -141,7 +141,6 @@ h1 {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		user-select: none;
 	}
 
 	#notifications {
@@ -166,14 +165,17 @@ h1 {
 	min-height: 32px;
 	background: #1e1e1e;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
 	box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.4), 0 0px 20px 0 rgba(0, 0, 0, 0.5);
 
-	#notiBoxIcons {
-		width: 32px;
+	#notiBoxHeader {
+		position: relative;
+		height: 32px;
 		display: flex;
-		justify-content: center;
-		padding: 10px 5px 10px 5px;
+		justify-content: space-between;
+		align-items: center;
+		padding: 3px 10px;
+		background-color: #181818;
 
 		.closeIcon {
 			width: 26px;
@@ -187,6 +189,40 @@ h1 {
 				background-color: rgba(255, 255, 255, 0.1);
 				cursor: pointer;
 			}
+		}
+	}
+
+	#notiboxContent {
+		width: 100%;
+		position: relative;
+	}
+}
+
+.updateCard {
+	display: flex;
+	flex-direction: column;
+
+	.updateCardBtns {
+		display: flex;
+		justify-content: end;
+		padding: 10px;
+
+		.updateBtn {
+			margin-right: 10px;
+			padding: 0.4em 1em;
+			font-size: 0.9em;
+			font-family: inherit;
+			background-color: #ac64ff;
+			border: 0;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #bc83ff;
+			}
+		}
+
+		.updateBtn:last-child {
+			margin-right: 0px;
 		}
 	}
 }
