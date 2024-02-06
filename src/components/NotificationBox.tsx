@@ -4,44 +4,34 @@ import { ProgressInfo } from "electron-updater";
 
 import { VsChevronDown } from "solid-icons/vs";
 
-import UpdateCard from "./UpdateCard";
+// import UpdateCard from "./UpdateCardOld";
+import { NotificationCard } from "./NotificationCards/NotificationCard";
 
-interface Props {
-	updateVersion: string;
-	setWantsUpdate: Setter<boolean>;
-	downloadProgress: ProgressInfo;
-	setDisplayNotifications: Setter<boolean>;
-	displayNotifications: boolean;
-	updateAvailable: boolean;
-}
+// interface Props {
+// 	updateVersion: string;
+// 	setWantsUpdate: Setter<boolean>;
+// 	downloadProgress: ProgressInfo;
+// 	setDisplayNotifications: Setter<boolean>;
+// 	displayNotifications: boolean;
+// 	updateAvailable: boolean;
+// }
 
-const NotificationBox = (props: Props) => {
+const NotificationBox = () => {
 	return (
 		<Portal>
 			<div id="notiBox">
 				<div id="notiBoxHeader">
 					<p class="headerText">Notifications</p>
-					<div
-						class="closeIcon"
-						onClick={() =>
-							props.setDisplayNotifications(
-								!props.displayNotifications
-							)
-						}>
-						<VsChevronDown size={20} />
-					</div>
 				</div>
 				<div id="notiBoxContent">
-					<Show when={props.updateAvailable}>
-						<UpdateCard
-							updateVersion={props.updateVersion}
-							setWantsUpdate={props.setWantsUpdate}
-							downloadProgress={props.downloadProgress}
-							setDisplayNotifications={
-								props.setDisplayNotifications
-							}
-						/>
-					</Show>
+					<NotificationCard
+						title="New update available!"
+						message={[
+							"Version: 1.0.0",
+							"Would you like to update?",
+						]}
+						type="update"
+					/>
 				</div>
 			</div>
 		</Portal>
