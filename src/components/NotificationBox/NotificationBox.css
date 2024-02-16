@@ -1,0 +1,40 @@
+#notiBox {
+	position: absolute;
+	bottom: 40px;
+	right: 10px;
+	width: 450px;
+	min-height: 32px;
+	background: #1e1e1e;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.4), 0 0px 20px 0 rgba(0, 0, 0, 0.5);
+
+	#notiBoxHeader {
+		position: relative;
+		height: 32px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 3px 10px;
+		background-color: #181818;
+
+		.closeIcon {
+			width: 26px;
+			height: 26px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 25%;
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.1);
+				cursor: pointer;
+			}
+		}
+	}
+
+	#notiboxContent {
+		width: 100%;
+		position: relative;
+	}
+}

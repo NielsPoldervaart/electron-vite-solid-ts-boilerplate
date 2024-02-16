@@ -5,6 +5,8 @@ import { HiOutlineBell, HiSolidBellAlert } from "solid-icons/hi";
 
 import NotificationBox from "../NotificationBox/NotificationBox";
 
+import "./Footer.css";
+
 const Footer = () => {
 	const [displayNotifications, setDisplayNotifications] = createSignal(false);
 	// const [wantsUpdate, setWantsUpdate] = createSignal(true);

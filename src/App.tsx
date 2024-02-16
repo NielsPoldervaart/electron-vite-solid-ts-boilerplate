@@ -4,6 +4,8 @@ import Counter from "./components/Counter/Counter";
 import Titlebar from "./components/Titlebar/Titlebar";
 import Footer from "./components/Footer/Footer";
 
+import "./App.css";
+
 export const App = () => {
 	const [isMaximized, setIsMaximized] = createSignal(false);
 

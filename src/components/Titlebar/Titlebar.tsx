@@ -1,5 +1,7 @@
 import { Component, Show } from "solid-js";
 
+import "./Titlebar.css";
+
 import {
 	VsCode,
 	VsChromeClose,

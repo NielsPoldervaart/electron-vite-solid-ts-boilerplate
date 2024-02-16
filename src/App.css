@@ -1,0 +1,13 @@
+.mainContent {
+	height: 100%;
+	padding: 2rem;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.card {
+	padding: 2em;
+}

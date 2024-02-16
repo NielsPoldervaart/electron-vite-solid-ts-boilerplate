@@ -7,6 +7,8 @@ import { VsChevronDown } from "solid-icons/vs";
 // import UpdateCard from "./UpdateCardOld";
 import { NotificationCard } from "../NotificationCards/NotificationCard";
 
+import "./NotificationBox.css";
+
 // interface Props {
 // 	updateVersion: string;
 // 	setWantsUpdate: Setter<boolean>;
