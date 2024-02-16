@@ -1,8 +1,8 @@
 import { createSignal } from "solid-js";
 
-import Counter from "./components/Counter";
-import Titlebar from "./components/Titlebar";
-import Footer from "./components/Footer";
+import Counter from "./components/Counter/Counter";
+import Titlebar from "./components/Titlebar/Titlebar";
+import Footer from "./components/Footer/Footer";
 
 export const App = () => {
 	const [isMaximized, setIsMaximized] = createSignal(false);

@@ -1,4 +1,4 @@
-import { Show } from "solid-js";
+import { Component, Show } from "solid-js";
 
 import {
 	VsCode,
@@ -12,7 +12,7 @@ interface Props {
 	isMaximized: boolean;
 }
 
-const Titlebar = (props: Props) => {
+const Titlebar: Component<Props> = (props) => {
 	return (
 		<header id="titlebar">
 			<div id="titlebarDrag">

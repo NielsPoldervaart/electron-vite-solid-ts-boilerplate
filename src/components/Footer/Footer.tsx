@@ -3,7 +3,7 @@ import { ProgressInfo } from "electron-updater";
 
 import { HiOutlineBell, HiSolidBellAlert } from "solid-icons/hi";
 
-import NotificationBox from "./NotificationBox";
+import NotificationBox from "../NotificationBox/NotificationBox";
 
 const Footer = () => {
 	const [displayNotifications, setDisplayNotifications] = createSignal(false);

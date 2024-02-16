@@ -1,9 +1,6 @@
 import { Component, Show, JSX } from "solid-js";
-import UpdateCard from "./UpdateCard";
+import UpdateCard from "./UpdateCard/UpdateCard";
 
-/**
- * Props for the NotificationCard component.
- */
 interface Props {
 	title?: string;
 	message: Array<string> | string;
@@ -28,16 +25,7 @@ function getCardComponent(
 	}
 }
 
-/**
- * Renders a notification card component.
- *
- * @component
- * @param {Props} props - The props for the NotificationCard component.
- * @returns {JSX.Element} The rendered NotificationCard component.
- */
-export const NotificationCard: Component<Props> = (
-	props: Props
-): JSX.Element => {
+export const NotificationCard: Component<Props> = (props): JSX.Element => {
 	const { type, ...otherProps } = props;
 	const SpecificCard = getCardComponent(type);
 

@@ -4,7 +4,7 @@ import { ProgressInfo } from "electron-updater";
 
 import { VsChevronDown } from "solid-icons/vs";
 
-import UpdateCard from "./UpdateCardOld";
+import UpdateCard from "../NotificationCards/UpdateCard/UpdateCardOld";
 
 interface Props {
 	updateVersion: string;
