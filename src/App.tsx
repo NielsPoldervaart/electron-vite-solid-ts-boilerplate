@@ -3,10 +3,9 @@ import { createSignal } from "solid-js";
 import Counter from "./components/Counter/Counter";
 import Titlebar from "./components/Titlebar/Titlebar";
 import Footer from "./components/Footer/Footer";
-
 import "./App.css";
 
-export const App = () => {
+const App = () => {
 	const [isMaximized, setIsMaximized] = createSignal(false);
 
 	const handleWindowMaximizedChange = (maximized: boolean) => {
@@ -29,3 +28,5 @@ export const App = () => {
 		</>
 	);
 };
+
+export default App;
