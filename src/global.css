@@ -7,6 +7,11 @@
 	color-scheme: light dark;
 	color: rgba(255, 255, 255, 0.87);
 	background-color: #1e1e1e;
+
+	--default-color: rgb(172, 100, 255);
+	--success-color: rgb(76, 175, 80);
+	--warning-color: rgb(255, 193, 7);
+	--error-color: rgb(244, 67, 54);
 }
 
 * {
