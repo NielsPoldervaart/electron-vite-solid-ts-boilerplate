@@ -1,7 +1,5 @@
 import { Component, Show } from "solid-js";
 
-import "./Titlebar.css";
-
 import {
 	VsCode,
 	VsChromeClose,
@@ -9,6 +7,8 @@ import {
 	VsChromeRestore,
 	VsChromeMinimize,
 } from "solid-icons/vs";
+
+import "./Titlebar.css";
 
 interface Props {
 	isMaximized: boolean;

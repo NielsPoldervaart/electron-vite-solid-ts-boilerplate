@@ -4,7 +4,6 @@ import { ProgressInfo } from "electron-updater";
 import { HiOutlineBell, HiSolidBellAlert } from "solid-icons/hi";
 
 import NotificationBox from "../NotificationBox/NotificationBox";
-
 import "./Footer.css";
 
 const Footer = () => {

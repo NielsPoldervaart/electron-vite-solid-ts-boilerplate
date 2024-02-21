@@ -6,7 +6,6 @@ import { VsChevronDown } from "solid-icons/vs";
 
 // import UpdateCard from "./UpdateCardOld";
 import { NotificationCard } from "../NotificationCards/NotificationCard";
-
 import "./NotificationBox.css";
 
 // interface Props {
@@ -27,11 +26,9 @@ const NotificationBox = () => {
 				</div>
 				<div id="notiBoxContent">
 					<NotificationCard
-						title="New update available!"
-						message={[
-							"Version: 1.0.0",
-							"Would you like to update?",
-						]}
+						message={
+							"New update available, v1.0.0. Would you like to download it?"
+						}
 						type="update"
 					/>
 				</div>
