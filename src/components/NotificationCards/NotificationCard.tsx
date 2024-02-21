@@ -1,12 +1,18 @@
 import { Component, Show, JSX } from "solid-js";
 
+import { VsClose } from "solid-icons/vs";
+import {
+	BiSolidErrorAlt,
+	BiSolidError,
+	BiSolidInfoCircle,
+} from "solid-icons/bi";
+
 import UpdateCard from "./UpdateCard/UpdateCard";
+import "./NotificationCard.css";
 
 interface Props {
-	title?: string;
-	message: Array<string> | string;
-	type?: "update" | "error" | "notification";
-	children?: any;
+	message: string;
+	type?: "notification" | "update" | "error" | "warning";
 }
 
 /**
@@ -15,7 +21,7 @@ interface Props {
  * @returns The card component or null if the type is not recognized.
  */
 function getCardComponent(
-	type?: "update" | "error" | "notification"
+	type?: Props["type"]
 ): ((props: Props) => JSX.Element) | null {
 	switch (type) {
 		case "update":
@@ -26,24 +32,81 @@ function getCardComponent(
 	}
 }
 
+/**
+ * Returns the appropriate icon based on the provided type.
+ * @param type - The type of the notification card.
+ * @returns The JSX.Element representing the icon.
+ */
+function getIcon(type?: Props["type"]): JSX.Element {
+	switch (type) {
+		case "error":
+			return (
+				<BiSolidErrorAlt
+					class="errorCardIcon cardIcon"
+					size={20}
+					style={{ color: "var(--error-color)" }}
+				/>
+			);
+		case "warning":
+			return (
+				<BiSolidError
+					class="warningCardIcon cardIcon"
+					size={20}
+					style={{ color: "var(--warning-color)" }}
+				/>
+			);
+		case "update":
+		case "notification":
+		default:
+			return (
+				<BiSolidInfoCircle
+					class="infoCardIcon cardIcon"
+					size={24}
+					style={{ color: "var(--default-color)" }}
+				/>
+			);
+	}
+}
+
+/**
+ * Returns the color based on the provided type.
+ * @param type - The type of the notification card.
+ * @returns The color corresponding to the type.
+ */
+function getColor(type?: Props["type"]): string {
+	switch (type) {
+		case "error":
+			return "var(--error-color)";
+		case "warning":
+			return "var(--warning-color)";
+		case "update":
+		case "notification":
+		default:
+			return "var(--default-color)";
+	}
+}
+
 export const NotificationCard: Component<Props> = (props): JSX.Element => {
-	const { type, ...otherProps } = props;
+	const { type = "notification", ...otherProps } = props;
+
 	const SpecificCard = getCardComponent(type);
+	const icon = getIcon(type);
+	const color = getColor(type);
 
 	return (
-		<div class="notificationCard">
-			<Show when={props.title}>
-				<h3>{props.title}</h3>
-			</Show>
-			{typeof props.message === "string" ? (
+		<div
+			class={`notificationCard ${type}`}
+			style={{ "border-left": `3px solid ${color}` }}>
+			<div class="baseCardElements">
+				{icon}
 				<p>{props.message}</p>
-			) : (
-				props.message.map((msg) => <p>{msg}</p>)
-			)}
+				<div class="cardCloseBtn">
+					<VsClose size={18} />
+				</div>
+			</div>
 			<Show when={SpecificCard}>
 				{(SpecificCard as Component<typeof otherProps>)(otherProps)}
 			</Show>
-			{!SpecificCard && props.children}
 		</div>
 	);
 };
