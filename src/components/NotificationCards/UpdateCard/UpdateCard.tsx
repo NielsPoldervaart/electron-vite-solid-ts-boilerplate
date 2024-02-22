@@ -11,6 +11,10 @@ import "./UpdateCard.css";
  * <NotificationCard type="update" message="This is an update message" />
  */
 
+// TODO: Use ProgressBar Component.
+// TODO: Add Update functionalities from electron-updater.
+// TODO: Call api for update information, add to global state.
+
 const UpdateCard = () => {
 	return (
 		<div class="updateCardElements">
