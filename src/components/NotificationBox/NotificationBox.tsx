@@ -20,11 +20,21 @@ import "./NotificationBox.css";
 const NotificationBox = () => {
 	return (
 		<Portal>
-			<div id="notiBox">
-				<div id="notiBoxHeader">
+			<div class="notiBox">
+				<div class="notiBoxHeader">
 					<p class="headerText">Notifications</p>
+					<div class="closeNotificationsContainer">
+						<div class="closeNotifications">
+							<VsChevronDown
+								size={20}
+								onClick={() =>
+									console.log("Close notifications")
+								}
+							/>
+						</div>
+					</div>
 				</div>
-				<div id="notiBoxContent">
+				<div class="notiBoxContent">
 					<NotificationCard
 						message={
 							"New update available, v1.0.0. Would you like to download it?"
