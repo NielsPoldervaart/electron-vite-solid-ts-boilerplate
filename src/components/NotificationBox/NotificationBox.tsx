@@ -8,16 +8,13 @@ import { VsChevronDown } from "solid-icons/vs";
 import { NotificationCard } from "../NotificationCards/NotificationCard";
 import "./NotificationBox.css";
 
-// interface Props {
-// 	updateVersion: string;
-// 	setWantsUpdate: Setter<boolean>;
-// 	downloadProgress: ProgressInfo;
-// 	setDisplayNotifications: Setter<boolean>;
-// 	displayNotifications: boolean;
-// 	updateAvailable: boolean;
-// }
+interface Props {
+	setDisplayNotifications: Setter<boolean>;
+}
 
-const NotificationBox = () => {
+// TODO: Programatically generate the notifications, use global state.
+
+const NotificationBox = (props: Props) => {
 	return (
 		<Portal>
 			<div class="notiBox">
@@ -28,7 +25,7 @@ const NotificationBox = () => {
 							<VsChevronDown
 								size={20}
 								onClick={() =>
-									console.log("Close notifications")
+									props.setDisplayNotifications(false)
 								}
 							/>
 						</div>
