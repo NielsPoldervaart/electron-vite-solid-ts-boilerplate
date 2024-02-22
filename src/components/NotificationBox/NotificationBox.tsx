@@ -31,6 +31,12 @@ const NotificationBox = () => {
 						}
 						type="update"
 					/>
+					<NotificationCard message="This is a notification!" />
+					<NotificationCard message="This is a error!" type="error" />
+					<NotificationCard
+						message="This is a warning!"
+						type="warning"
+					/>
 				</div>
 			</div>
 		</Portal>
