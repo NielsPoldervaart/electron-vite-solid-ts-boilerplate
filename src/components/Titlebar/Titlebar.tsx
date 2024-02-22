@@ -1,4 +1,4 @@
-import { Component, Show } from "solid-js";
+import { Component, Show, createSignal } from "solid-js";
 
 import {
 	VsCode,
@@ -10,11 +10,16 @@ import {
 
 import "./Titlebar.css";
 
-interface Props {
-	isMaximized: boolean;
-}
+const Titlebar: Component = () => {
+	const [isMaximized, setIsMaximized] = createSignal(false);
 
-const Titlebar: Component<Props> = (props) => {
+	const handleWindowMaximizedChange = (maximized: boolean) => {
+		setIsMaximized(maximized);
+	};
+
+	// When window is maximized / unmaximized call callback function.
+	window.api.onWindowMaximizedChange(handleWindowMaximizedChange);
+
 	return (
 		<header id="titlebar">
 			<div id="titlebarDrag">
@@ -28,7 +33,7 @@ const Titlebar: Component<Props> = (props) => {
 				</div>
 				<div class="titleBtn" id="maximizeBtn">
 					<Show
-						when={!props.isMaximized}
+						when={!isMaximized}
 						fallback={<VsChromeRestore size={18} />}>
 						<VsChromeMaximize size={18} />
 					</Show>
