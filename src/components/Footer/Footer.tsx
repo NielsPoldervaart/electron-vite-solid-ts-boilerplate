@@ -8,32 +8,8 @@ import "./Footer.css";
 
 const Footer = () => {
 	const [displayNotifications, setDisplayNotifications] = createSignal(false);
-	// const [wantsUpdate, setWantsUpdate] = createSignal(true);
-	// const [updateAvailable, setUpdateAvailable] = createSignal(true);
-	// const [updateVersion, setUpdateVersion] = createSignal(`${APP_VERSION}`);
-	// const [downloadProgress, setDownloadProgress] = createSignal({
-	// 	total: 0,
-	// 	delta: 0,
-	// 	transferred: 0,
-	// 	percent: 0,
-	// 	bytesPerSecond: 0,
-	// });
 
-	// const handleUpdateAvailable = (available: boolean, version: string) => {
-	// 	setUpdateAvailable(available);
-	// 	setUpdateVersion(version);
-	// };
-
-	// const handleDownloadUpdateProgress = (progress: ProgressInfo) => {
-	// 	setDownloadProgress(progress);
-	// };
-
-	// window.api.onUpdateAvailable(handleUpdateAvailable);
-	// window.api.onUpdateDownloadProgress(handleDownloadUpdateProgress);
-
-	// TODO: Clean up props for notifications
-	// TODO: Add "read" functionality to notifications
-	// TODO: Make modular notification card.
+	// TODO: Implement the updateAvailable and wantsUpdate functions, use global state.
 
 	return (
 		<>
@@ -53,7 +29,9 @@ const Footer = () => {
 				</div>
 			</footer>
 			<Show when={displayNotifications()}>
-				<NotificationBox />
+				<NotificationBox
+					setDisplayNotifications={setDisplayNotifications}
+				/>
 			</Show>
 		</>
 	);
