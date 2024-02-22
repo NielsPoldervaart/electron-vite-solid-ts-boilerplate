@@ -14,8 +14,12 @@ import "./UpdateCard.css";
 const UpdateCard = () => {
 	return (
 		<div class="updateCardElements">
-			<button class="updateCardBtn">Yes</button>
-			<button class="updateCardBtn">No</button>
+			<button class="updateCardBtn" tabindex="-1">
+				Yes
+			</button>
+			<button class="updateCardBtn" tabindex="-1">
+				No
+			</button>
 		</div>
 	);
 };
