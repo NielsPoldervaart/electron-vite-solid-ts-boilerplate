@@ -26,7 +26,6 @@ function getCardComponent(
 	switch (type) {
 		case "update":
 			return UpdateCard;
-		case "notification":
 		default:
 			return null;
 	}
@@ -43,7 +42,7 @@ function getIcon(type?: Props["type"]): JSX.Element {
 			return (
 				<BiSolidErrorAlt
 					class="errorCardIcon cardIcon"
-					size={20}
+					size={24}
 					style={{ color: "var(--error-color)" }}
 				/>
 			);
@@ -51,12 +50,10 @@ function getIcon(type?: Props["type"]): JSX.Element {
 			return (
 				<BiSolidError
 					class="warningCardIcon cardIcon"
-					size={20}
+					size={24}
 					style={{ color: "var(--warning-color)" }}
 				/>
 			);
-		case "update":
-		case "notification":
 		default:
 			return (
 				<BiSolidInfoCircle
@@ -79,8 +76,6 @@ function getColor(type?: Props["type"]): string {
 			return "var(--error-color)";
 		case "warning":
 			return "var(--warning-color)";
-		case "update":
-		case "notification":
 		default:
 			return "var(--default-color)";
 	}
@@ -98,10 +93,12 @@ export const NotificationCard: Component<Props> = (props): JSX.Element => {
 			class={`notificationCard ${type}`}
 			style={{ "border-left": `3px solid ${color}` }}>
 			<div class="baseCardElements">
-				{icon}
-				<p>{props.message}</p>
-				<div class="cardCloseBtn">
-					<VsClose size={18} />
+				<div class="cardIcon">{icon}</div>
+				<p class="cardMessage">{props.message}</p>
+				<div class="cardCloseBtnContainer">
+					<div class="cardCloseBtn">
+						<VsClose size={18} />
+					</div>
 				</div>
 			</div>
 			<Show when={SpecificCard}>
