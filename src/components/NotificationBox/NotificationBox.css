@@ -1,4 +1,4 @@
-#notiBox {
+.notiBox {
 	position: absolute;
 	bottom: 40px;
 	right: 10px;
@@ -9,7 +9,7 @@
 	flex-direction: column;
 	box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.4), 0 0px 20px 0 rgba(0, 0, 0, 0.5);
 
-	#notiBoxHeader {
+	.notiBoxHeader {
 		position: relative;
 		height: 32px;
 		display: flex;
@@ -18,22 +18,33 @@
 		padding: 3px 10px;
 		background-color: #181818;
 
-		.closeIcon {
-			width: 26px;
-			height: 26px;
+		.closeNotificationsContainer {
 			display: flex;
-			justify-content: center;
 			align-items: center;
-			border-radius: 25%;
+			justify-content: center;
+			height: 24px;
+			width: 24px;
 
-			&:hover {
-				background-color: rgba(255, 255, 255, 0.1);
+			.closeNotifications {
+				width: 20px;
+				height: 20px;
 				cursor: pointer;
+				border-radius: 5px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 1px;
+				flex-shrink: 0;
+				flex-grow: 0;
+
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.1);
+				}
 			}
 		}
 	}
 
-	#notiboxContent {
+	.notiboxContent {
 		width: 100%;
 		position: relative;
 	}
