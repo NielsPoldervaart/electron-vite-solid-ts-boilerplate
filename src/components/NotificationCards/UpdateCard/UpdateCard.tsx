@@ -13,10 +13,10 @@ import "./UpdateCard.css";
 
 const UpdateCard = () => {
 	return (
-		<>
-			<button>Yes</button>
-			<button>No</button>
-		</>
+		<div class="updateCardElements">
+			<button class="updateCardBtn">Yes</button>
+			<button class="updateCardBtn">No</button>
+		</div>
 	);
 };
 
