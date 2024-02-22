@@ -1,1 +1,21 @@
+.updateCardElements {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 
+	.updateCardBtn {
+		margin-top: 16px;
+		padding: 7px 12px;
+		border: 0;
+		cursor: pointer;
+		background-color: var(--default-color);
+
+		&:hover {
+			background-color: var(--default-color-hover);
+		}
+
+		&:first-of-type {
+			margin-right: 10px;
+		}
+	}
+}
