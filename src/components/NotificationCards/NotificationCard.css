@@ -48,6 +48,8 @@
 			display: flex;
 			align-items: center;
 			height: 24px;
+			width: 24px;
+			flex-shrink: 0;
 
 			.cardCloseBtn {
 				width: 20px;
